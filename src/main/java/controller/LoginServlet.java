@@ -35,8 +35,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			// リクエストスコープから変数へ代入
 			String loginId = request.getParameter("login_id");
 			String loginPass = request.getParameter("login_pass");
+
+			// Daoを用いてDBにログイン情報を渡す
 			UserDao userDao = DaoFactory.createUserDao();
 			User user = userDao.findByIdAndPass(loginId, loginPass);
 			if (user != null) {
@@ -45,7 +48,6 @@ public class LoginServlet extends HttpServlet {
 			} else {
 				request.setAttribute("error", true);
 				request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
-			}
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
