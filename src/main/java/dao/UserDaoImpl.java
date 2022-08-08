@@ -77,5 +77,4 @@ public class UserDaoImpl implements UserDao {
 		user.setName(rs.getString("name"));
 		return user;
 	}
-	//GitHub test
 }
