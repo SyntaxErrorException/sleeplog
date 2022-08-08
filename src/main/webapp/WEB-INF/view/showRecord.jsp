@@ -55,8 +55,8 @@
 						<td>0回</td>
 						<td>すっきり</td>
 						<td>快眠だった。</td>
-						<td><a href="editRecord.html" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone.html" class="delete">削除</a></td>
+						<td><a href="editRecord" class="edit">編集</a></td>
+						<td><a href="deleteRecordDone" class="delete">削除</a></td>
 					</tr>
 					<tr>
 						<td>22/08/02</td>
@@ -68,8 +68,8 @@
 						<td>0回</td>
 						<td>すっきり</td>
 						<td></td>
-						<td><a href="editRecord.html" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone.html" class="delete">削除</a></td>
+						<td><a href="editRecord" class="edit">編集</a></td>
+						<td><a href="deleteRecordDone" class="delete">削除</a></td>
 					</tr>
 					<tr>
 						<td>22/08/03</td>
@@ -81,8 +81,8 @@
 						<td>0回</td>
 						<td>すっきり</td>
 						<td></td>
-						<td><a href="editRecord.html" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone.html" class="delete">削除</a></td>
+						<td><a href="editRecord" class="edit">編集</a></td>
+						<td><a href="deleteRecordDone" class="delete">削除</a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -14,7 +14,7 @@
 	<h1>Sleep log</h1>
 	<h3>削除完了</h3>
 	<p>レコードを削除しました。</p>
-	<a href="showRecord.html">睡眠日誌に戻る</a>
+	<a href="showRecord">睡眠日誌に戻る</a>
 </body>
 
 </html>

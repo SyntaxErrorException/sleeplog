@@ -14,7 +14,7 @@
 	<h1>Sleep log</h1>
 	<h3>新規登録</h3>
 	<div class="container">
-		<form action="addUserDone.html">
+		<form action="addUserDone">
 			<p>
 				ID<br> <input type="text" name="loginId">
 			</p>
@@ -31,7 +31,7 @@
 		</form>
 	</div>
 	<P>
-		<a href="login.html">ログイン画面に戻る</a>
+		<a href="login">ログイン画面に戻る</a>
 	</P>
 </body>
 

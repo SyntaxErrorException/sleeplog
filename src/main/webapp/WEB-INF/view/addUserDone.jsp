@@ -15,7 +15,7 @@
 	<h1>Sleep log</h1>
 	<h3>登録完了</h3>
 	<p>ユーザを新規登録しました。</p>
-	<a href="login.html">ログイン画面に戻る</a>
+	<a href="login">ログイン画面に戻る</a>
 </body>
 
 </html>

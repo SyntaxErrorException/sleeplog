@@ -17,7 +17,7 @@
 	<div class="container">
 		<div style="color: hsl(15, 90%, 45%);">※は必須項目</div>
 		<div>
-			<a href="login.html">ログアウト</a>
+			<a href="login">ログアウト</a>
 		</div>
 	</div>
 	<div class="container">
@@ -59,7 +59,7 @@
 		</form>
 	</div>
 	<p>
-		<a href="showRecord.html">キャンセル</a>
+		<a href="showRecord">キャンセル</a>
 	</p>
 </body>
 
