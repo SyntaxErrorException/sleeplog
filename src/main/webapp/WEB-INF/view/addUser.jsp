@@ -16,16 +16,16 @@
 	<div class="container">
 		<form action="addUserDone">
 			<p>
-				ID<br> <input type="text" name="loginId">
+				ID<br> <input type="text" name="login_id">
 			</p>
 			<p>
-				パスワード<br> <input type="password" name="loginPass">
+				パスワード<br> <input type="password" name="login_pass">
 			</p>
 			<p>
-				パスワード再入力<br> <input type="password" name="loginPassConf">
+				パスワード再入力<br> <input type="password" name="login_pass_conf">
 			</p>
 			<p>
-				お名前<br> <input type="text" name="userName">
+				お名前<br> <input type="text" name="name">
 			</p>
 			<input type="submit" value="登録">
 		</form>

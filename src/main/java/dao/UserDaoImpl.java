@@ -22,6 +22,17 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public void insert(User user) throws Exception {
+		try (Connection con = ds.getConnection()) {
+			String sql = "INSERT INTO users (login_id, login_pass, name) "
+					+ " VALUES (?, ?, ?)";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, user.getLoginId());
+			stmt.setString(2, BCrypt.hashpw(user.getLoginPass(), BCrypt.gensalt()));			
+			stmt.setString(3, user.getName());
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		}
 		
 	}
 
