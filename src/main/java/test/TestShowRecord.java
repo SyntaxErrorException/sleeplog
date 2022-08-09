@@ -37,19 +37,17 @@ public class TestShowRecord extends HttpServlet {
 		 * 「H時m分」の形式で表示するために、睡眠時間を「時」と「分」に分ける。
 		 */
 		Duration timeOfSleeping = Duration.between(time3, time2);
-		int H = timeOfSleeping.toHoursPart();
-		int m = timeOfSleeping.toMinutesPart();
-		request.setAttribute("H",H );
-		request.setAttribute("m",m );
+
 		
 		/*
 		 *0時0分にDurationを加えて睡眠時間を算出する。
 		 */
 		LocalTime t = LocalTime.MIDNIGHT.plus(timeOfSleeping);
-		String s = DateTimeFormatter.ofPattern("H:m").format(t);
+		String s = DateTimeFormatter.ofPattern("H:mm").format(t);
+		String ave = DateTimeFormatter.ofPattern("H:mm").format(t);
 		
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("y/M/d H:m");
-		String s1 = dtf.format(time3);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/M/d H:m");
+		String s1 = dtf.format(time1);
 		String s2 = dtf.format(time2);
 		
 		DailyRecord r = new DailyRecord();
@@ -62,6 +60,7 @@ public class TestShowRecord extends HttpServlet {
 		dr.add(r);
 		
 		request.setAttribute("records", dr);
+		request.setAttribute("average", ave);
 		request.setAttribute("timeOfSleeping", s);
 		request.getRequestDispatcher("/WEB-INF/view/showRecord.jsp").forward(request, response);
 	}

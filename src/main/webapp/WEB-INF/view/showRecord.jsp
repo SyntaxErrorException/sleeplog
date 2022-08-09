@@ -22,7 +22,7 @@
 	</p>
 	<p>
 		平均睡眠時間 :
-		<c:out value="${H}時間${m}分/日" />
+		<c:out value="${average}/日" />
 	</p>
 	<div class="container">
 		<div>
@@ -55,7 +55,7 @@
 						<tr>
 							<td><c:out value="${record.goingToBed}" /></td>
 							<td><c:out value="${record.getUp}" /></td>
-							<td><c:out value="${record.fallAsleep}" /></td>
+							<td><c:out value="${record.fallAsleep}分" /></td>
 							<td><c:out value="${timeOfSleeping }" /></td>
 							<td><c:out value="${record.nightAwakenings}" /></td>
 							<td><c:out value="${record.mood}" /></td>
