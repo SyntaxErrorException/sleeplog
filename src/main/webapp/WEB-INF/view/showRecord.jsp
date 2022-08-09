@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="ja">
 
 <head>
@@ -14,7 +16,7 @@
 <body>
 	<h1>Sleep log</h1>
 	<h3>睡眠日誌</h3>
-	<p class="userName">山田太郎 様</p>
+	<p class="userName"><c:out value="${user.name}" /> 様</p>
 	<p>平均睡眠時間 : 7時間30分/日</p>
 	<div class="container">
 		<div>

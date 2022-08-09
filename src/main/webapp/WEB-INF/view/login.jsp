@@ -19,7 +19,6 @@
 		<form action="" method="post">
 			<c:if test="${not empty error}">
 				<p class="errorMessage">IDまたはパスワードが間違っています。</p>
-				<br>
 			</c:if>
 
 			<p>

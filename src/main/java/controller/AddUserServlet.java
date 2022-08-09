@@ -32,11 +32,7 @@ public class AddUserServlet extends HttpServlet {
 		User user = new User();
 		user.setLoginId(request.getParameter("login_id"));
 		user.setLoginPass(request.getParameter("login_pass"));
-		user.setName("name");
-		
-		System.out.println(user.getLoginId());
-		System.out.println(user.getLoginPass());
-		System.out.println(user.getName());
+		user.setName(request.getParameter("name"));
 		
 		//DBに新規ユーザを登録する
 		try {

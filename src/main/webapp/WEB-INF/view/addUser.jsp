@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
@@ -14,7 +15,7 @@
 	<h1>Sleep log</h1>
 	<h3>新規登録</h3>
 	<div class="container">
-		<form action="addUserDone">
+		<form action="" method="post">
 			<p>
 				ID<br> <input type="text" name="login_id">
 			</p>
