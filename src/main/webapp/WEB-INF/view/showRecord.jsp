@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ja">
 
 <head>
@@ -16,8 +16,14 @@
 <body>
 	<h1>Sleep log</h1>
 	<h3>睡眠日誌</h3>
-	<p class="userName"><c:out value="${user.name}" /> 様</p>
-	<p>平均睡眠時間 : 7時間30分/日</p>
+	<p class="userName">
+		<c:out value="${user.name}" />
+		様
+	</p>
+	<p>
+		平均睡眠時間 :
+		<c:out value="${H}時間${m}分/日" />
+	</p>
 	<div class="container">
 		<div>
 			<form action="" method="post">
@@ -34,8 +40,6 @@
 			<table>
 				<thead>
 					<tr>
-						<th class="fixed">年月日</th>
-						<th class="fixed">曜日</th>
 						<th class="fixed">就寝</th>
 						<th class="fixed">起床</th>
 						<th class="fixed">寝付くまでの時間</th>
@@ -47,45 +51,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>22/08/01</td>
-						<td>月</td>
-						<td>22:00</td>
-						<td>06:00</td>
-						<td>15分</td>
-						<td>08時間00分</td>
-						<td>0回</td>
-						<td>すっきり</td>
-						<td>快眠だった。</td>
-						<td><a href="editRecord" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone" class="delete">削除</a></td>
-					</tr>
-					<tr>
-						<td>22/08/02</td>
-						<td>火</td>
-						<td>22:30</td>
-						<td>06:00</td>
-						<td>10分</td>
-						<td>07時間30分</td>
-						<td>0回</td>
-						<td>すっきり</td>
-						<td></td>
-						<td><a href="editRecord" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone" class="delete">削除</a></td>
-					</tr>
-					<tr>
-						<td>22/08/03</td>
-						<td>水</td>
-						<td>23:00</td>
-						<td>06:00</td>
-						<td>10分</td>
-						<td>07時間00分</td>
-						<td>0回</td>
-						<td>すっきり</td>
-						<td></td>
-						<td><a href="editRecord" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone" class="delete">削除</a></td>
-					</tr>
+					<c:forEach var="record" items="${records}">
+						<tr>
+							<td><c:out value="${record.goingToBed}" /></td>
+							<td><c:out value="${record.getUp}" /></td>
+							<td><c:out value="${record.fallAsleep}" /></td>
+							<td><c:out value="${timeOfSleeping }" /></td>
+							<td><c:out value="${record.nightAwakenings}" /></td>
+							<td><c:out value="${record.mood}" /></td>
+							<td><c:out value="${record.remarks}" /></td>
+							<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
+							<td><a href="deleteRecordDone?id=${record.id}"
+								class="delete">削除</a></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</details>

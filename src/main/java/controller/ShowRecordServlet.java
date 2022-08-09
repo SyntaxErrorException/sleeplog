@@ -19,6 +19,8 @@ public class ShowRecordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ユーザのレコードを抽出する
+		
 		request.getRequestDispatcher("/WEB-INF/view/showRecord.jsp").forward(request, response);
 	}
 
