@@ -1,2 +1,4 @@
-/test/
 /domain/
+/dao/
+/test/
+/controller/

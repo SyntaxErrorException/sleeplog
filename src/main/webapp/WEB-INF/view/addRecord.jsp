@@ -24,12 +24,12 @@
 			<div class="container">
 				<div>
 					<p>
-						※就寝<br> <input type="datetime-local" name="goingToBed">
+						※就寝<br> <input type="datetime-local" name="going_to_bed">
 					</p>
 				</div>
 				<div>
 					<p>
-						※起床<br> <input type="datetime-local" name="getUp">
+						※起床<br> <input type="datetime-local" name="get_up">
 					</p>
 				</div>
 				<div>
@@ -43,11 +43,11 @@
 				</div>
 			</div>
 			<p>
-				寝付くまでの時間（分）<br> <input type="number" name="fallAsleep" min="0"
+				寝付くまでの時間（分）<br> <input type="number" name="fall_asleep" min="0"
 					value="0">
 			</p>
 			<p>
-				夜間覚醒の回数<br> <input type="number" name="nightAwakenings" min="0"
+				夜間覚醒の回数<br> <input type="number" name="night_awakenings" min="0"
 					value="0">
 			</p>
 			<p>

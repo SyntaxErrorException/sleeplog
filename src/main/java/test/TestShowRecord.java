@@ -44,7 +44,6 @@ public class TestShowRecord extends HttpServlet {
 		 */
 		LocalTime t = LocalTime.MIDNIGHT.plus(timeOfSleeping);
 		String s = DateTimeFormatter.ofPattern("H:mm").format(t);
-		String ave = DateTimeFormatter.ofPattern("H:mm").format(t);
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/M/d H:m");
 		String s1 = dtf.format(time1);
@@ -52,8 +51,8 @@ public class TestShowRecord extends HttpServlet {
 		
 		DailyRecord r = new DailyRecord();
 		r.setId(1);
-		r.setGoingToBed(s1);
-		r.setGetUp(s2);
+//		r.setGoingToBed(s1);
+//		r.setGetUp(s2);
 		r.setFallAsleep(i);
 		r.setMood("すっきり");
 		List<DailyRecord> dr = new ArrayList<>();

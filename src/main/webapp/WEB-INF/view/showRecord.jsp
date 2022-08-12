@@ -51,12 +51,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="record" items="${records}">
+					<c:forEach var="record" items="${recordList}">
 						<tr>
 							<td><c:out value="${record.goingToBed}" /></td>
 							<td><c:out value="${record.getUp}" /></td>
 							<td><c:out value="${record.fallAsleep}分" /></td>
-							<td><c:out value="${timeOfSleeping }" /></td>
+							<td><c:out value="${record.timeOfSleeping}" /></td>
 							<td><c:out value="${record.nightAwakenings}" /></td>
 							<td><c:out value="${record.mood}" /></td>
 							<td><c:out value="${record.remarks}" /></td>
