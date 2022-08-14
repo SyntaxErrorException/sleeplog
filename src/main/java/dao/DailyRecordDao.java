@@ -5,8 +5,13 @@ import java.util.List;
 import domain.DailyRecord;
 
 public interface DailyRecordDao {
-	void insert(DailyRecord dailyRecord) throws Exception;
 	List<DailyRecord> findById(Integer userId) throws Exception;
-	DailyRecord update(DailyRecord dailyRecord) throws Exception;
-	 void delete(DailyRecord dailyRecord) throws Exception;
+	
+	DailyRecord select(int id) throws Exception;
+
+	void insert(DailyRecord dailyRecord) throws Exception;
+
+	void update(DailyRecord DailyRecord) throws Exception;
+
+	void delete(int id) throws Exception;
 }

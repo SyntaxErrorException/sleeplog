@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DailyRecordDao;
+import dao.DaoFactory;
+
 /**
  * Servlet implementation class DeleteDoneServlet
  */
@@ -19,6 +22,12 @@ public class DeleteRecordDoneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DailyRecordDao record = DaoFactory.createDailyRecordDao();
+		try {
+			record.delete(Integer.parseInt(request.getParameter("id")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("/WEB-INF/view/deleteRecordDone.jsp").forward(request, response);
 	}
 }

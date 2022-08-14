@@ -22,21 +22,21 @@
 	</p>
 	<p>
 		平均睡眠時間 :
-		<c:out value="${average}/日" />
+		<c:out value="${averageTimeOfSleeping}" />
 	</p>
+	<div>
+		<a href="logout">ログアウト</a>
+	</div>
 	<div class="container">
 		<div>
 			<form action="" method="post">
 				<input type="submit" value="記録を付ける">
 			</form>
 		</div>
-		<div>
-			<a href="login">ログアウト</a>
-		</div>
 	</div>
 	<div class="container">
 		<details>
-			<summary>テーブル表示</summary>
+			<summary>記録を見る</summary>
 			<table>
 				<thead>
 					<tr>
@@ -52,17 +52,17 @@
 				</thead>
 				<tbody>
 					<c:forEach var="record" items="${recordList}">
-						<tr>
-							<td><c:out value="${record.goingToBed}" /></td>
-							<td><c:out value="${record.getUp}" /></td>
+						<tr id="${record.id}">
+							<td><c:out value="${record.formattedGoingToBed}" /></td>
+							<td><c:out value="${record.formattedGetUp}" /></td>
 							<td><c:out value="${record.fallAsleep}分" /></td>
-							<td><c:out value="${record.timeOfSleeping}" /></td>
+							<td><c:out value="${record.formattedTimeOfSleeping}" /></td>
 							<td><c:out value="${record.nightAwakenings}" /></td>
 							<td><c:out value="${record.mood}" /></td>
 							<td><c:out value="${record.remarks}" /></td>
 							<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
-							<td><a href="deleteRecordDone?id=${record.id}"
-								class="delete">削除</a></td>
+							<td><button class="delete"
+									onclick="deleteRecord(${record.id});">削除</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -70,5 +70,20 @@
 		</details>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function deleteRecord(id) {
+		const bgc = $('#' + id + ' td').css('background-color');
+		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
 
+		setTimeout(function(){
+		const result = confirm('記録を削除します。\r\nよろしいですか？');
+			if (result == true) {
+				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+			} else {
+				$('#' + id + ' td').css('background-color',bgc);
+			}
+		},100);
+	}
+</script>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -16,14 +17,22 @@
 	<h3>新規登録</h3>
 	<div class="container">
 		<form action="" method="post">
+			<c:if test="${not empty error}">
+				<p class="errorMessage">
+					<c:forEach var="errorMsg" items="${errorMsgList }">
+						<c:out value="${errorMsg}" />
+						<br>
+					</c:forEach>
+				</p>
+			</c:if>
 			<p>
-				ID<br> <input type="text" name="login_id">
+				ID<br> <input type="text" name="login_id" placeholder="半角英数のみ">
 			</p>
 			<p>
-				パスワード<br> <input type="password" name="login_pass">
+				パスワード<br> <input type="password" name="login_pass" placeholder="4文字以上">
 			</p>
 			<p>
-				パスワード再入力<br> <input type="password" name="login_pass_conf">
+				パスワード確認<br> <input type="password" name="login_pass_conf">
 			</p>
 			<p>
 				お名前<br> <input type="text" name="name">

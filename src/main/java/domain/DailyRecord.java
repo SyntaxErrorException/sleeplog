@@ -1,6 +1,7 @@
 package domain;
 
-import java.sql.Date;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,14 +11,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class DailyRecord {
-	//フィールド
+	/*
+	 * フィールド
+	 */
 	private Integer id;
 	private Integer userId;
-	private Date goingToBed;
-	private Date getUp;
 	private Integer fallAsleep;
-	private String timeOfSleeping;
 	private String mood;
 	private Integer nightAwakenings;
 	private String remarks;
+	/*
+	 * 計算用
+	 */
+	private LocalDateTime goingToBed;
+	private LocalDateTime getUp;
+	private Duration timeOfSleeping;
+	/*
+	 * 表示用
+	 */
+	private String formattedGoingToBed;
+	private String formattedGetUp;
+	private String formattedTimeOfSleeping;
 }
