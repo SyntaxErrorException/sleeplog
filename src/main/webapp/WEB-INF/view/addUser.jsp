@@ -9,11 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css">
-<title>新規登録 Sleep log</title>
+<link rel="icon" href="images/night.png" />
+<title>新規登録 Sleep logger</title>
 </head>
 
 <body>
-	<h1>Sleep log</h1>
+	<h1>Sleep logger</h1>
 	<h3>新規登録</h3>
 	<div class="container">
 		<form action="" method="post">
@@ -25,17 +26,17 @@
 					</c:forEach>
 				</p>
 			</c:if>
-			<p>
-				ID<br> <input type="text" name="login_id" placeholder="半角英数のみ">
+			<p style="text-align:left;">
+				ID<br> <input type="text" name="login_id" max="20" placeholder="半角英数のみ">
 			</p>
-			<p>
-				パスワード<br> <input type="password" name="login_pass" placeholder="4文字以上">
+			<p style="text-align:left;">
+				パスワード<br> <input type="password" name="login_pass" min="6" max="255" placeholder="6文字以上">
 			</p>
-			<p>
-				パスワード確認<br> <input type="password" name="login_pass_conf">
+			<p style="text-align:left;">
+				パスワード確認<br> <input type="password" min="6" max="255" name="login_pass_conf">
 			</p>
-			<p>
-				お名前<br> <input type="text" name="name">
+			<p style="text-align:left;">
+				お名前<br> <input type="text" name="name" max="20">
 			</p>
 			<input type="submit" value="登録">
 		</form>

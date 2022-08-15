@@ -52,7 +52,7 @@ public class AddUserServlet extends HttpServlet {
 			errorMsgList.add("IDは半角英数のみ有効です");
 		}
 		//IDの文字数をチェックする
-		if (loginId.length() > 20) {
+		if (loginId.length() >= 20) {
 			errorMsgList.add("IDは20文字以内です。");
 		}
 		//login_idの重複をチェックする
@@ -69,9 +69,14 @@ public class AddUserServlet extends HttpServlet {
 			errorMsgList.add("パスワードが一致しません。");
 		}
 		//パスワードの文字数をチェックする
-		if (pass.length() < 4 || pass.length() > 255) {
-			errorMsgList.add("パスワードは4～255文字です。");
+		if (pass.length() < 6 || pass.length() > 255) {
+			errorMsgList.add("パスワードは6～255文字です。");
 		}
+		//名前の文字数をチェックする
+		if (name.length() >= 20) {
+			errorMsgList.add("名前は20文字以内です。");
+		}
+		
 		//チェック結果がNGなら新規登録ページを再表示する
 		if (errorMsgList.size() != 0) {
 			request.setAttribute("errorMsgList", errorMsgList);

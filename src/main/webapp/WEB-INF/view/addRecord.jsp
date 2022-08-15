@@ -9,18 +9,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css">
-<title>記録を付ける Sleep log</title>
+<link rel="icon" href="images/night.png" />
+<title>記録を付ける Sleep logger</title>
 </head>
 
 <body>
-	<h1>Sleep log</h1>
+	<h1>Sleep logger</h1>
 	<h3>記録を付ける</h3>
 	<div class="container">
 		<div>
 			<a href="logout">ログアウト</a>
 		</div>
 	</div>
-	<div style="color: hsl(15, 90%, 45%);">必須項目</div>
+	<div style="color: #ffdd00;">必須項目</div>
 		<c:if test="${not empty error}">
 		<p class="errorMessage">
 			<c:forEach var="msg" items="${errorMsg}">
@@ -61,7 +62,7 @@
 			</p>
 			<p>
 				備考<br>
-				<textarea name="remarks" cols="25" rows="3"></textarea>
+				<textarea name="remarks" cols="20" rows="2" placeholder="20文字以内"></textarea>
 			</p>
 			<input type="submit" value="登録">
 		</form>

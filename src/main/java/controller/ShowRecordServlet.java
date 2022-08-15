@@ -36,19 +36,21 @@ public class ShowRecordServlet extends HttpServlet {
 			DailyRecordDao recordDao = DaoFactory.createDailyRecordDao();
 			List<DailyRecord> recordList = recordDao.findById(user.getId());
 			//平均睡眠時間を算出する
-			Duration d = Duration.ZERO;
-			for (DailyRecord r : recordList) {
-				d = r.getTimeOfSleeping().plus(d);
+			if (recordList.size() != 0) {
+				Duration d = Duration.ZERO;
+				for (DailyRecord r : recordList) {
+					d = r.getTimeOfSleeping().plus(d);
+				}
+				d = d.dividedBy(recordList.size());
+				//平均睡眠時間を整形する
+				long t = d.toMinutes();
+				long HH = t / 60;
+				long mm = t % 60;
+				DecimalFormat df = new DecimalFormat("#00");
+				String s = df.format(HH) + ":" + df.format(mm);
+
+				request.setAttribute("averageTimeOfSleeping", s);
 			}
-			d = d.dividedBy(recordList.size());
-			//平均睡眠時間を整形する
-			long t = d.toMinutes();
-			long HH = t / 60;
-			long mm = t % 60;
-			DecimalFormat df = new DecimalFormat("#00");
-			String s = df.format(HH) + ":" + df.format(mm);
-			
-			request.setAttribute("averageTimeOfSleeping", s);
 			request.setAttribute("recordList", recordList);
 		} catch (Exception e) {
 			throw new ServletException(e);

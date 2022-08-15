@@ -10,11 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link href="css/style.css" rel="stylesheet" />
-<title>睡眠日誌 Sleep log</title>
+<link rel="icon" href="images/night.png" />
+<title>睡眠日誌 Sleep logger</title>
 </head>
 
 <body>
-	<h1>Sleep log</h1>
+	<h1>Sleep logger</h1>
 	<h3>睡眠日誌</h3>
 	<p class="userName">
 		<c:out value="${user.name}" />
@@ -40,6 +41,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th class="fixed">No.</th>
 						<th class="fixed">就寝</th>
 						<th class="fixed">起床</th>
 						<th class="fixed">寝付くまでの時間</th>
@@ -51,8 +53,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="record" items="${recordList}">
+					<c:forEach var="record" items="${recordList}" varStatus="vs">
 						<tr id="${record.id}">
+							<td><c:out value="${vs.count}" /></td>
 							<td><c:out value="${record.formattedGoingToBed}" /></td>
 							<td><c:out value="${record.formattedGetUp}" /></td>
 							<td><c:out value="${record.fallAsleep}分" /></td>
@@ -72,6 +75,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+<!-- 削除処理 -->
 	function deleteRecord(id) {
 		const bgc = $('#' + id + ' td').css('background-color');
 		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');

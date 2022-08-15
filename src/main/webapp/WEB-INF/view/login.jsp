@@ -10,21 +10,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/style.css" />
-<title>ログイン Sleep log</title>
+<link rel="icon" href="images/night.png" /> 
+<title>ログイン Sleep logger</title>
 </head>
 
 <body>
-	<h1>Sleep log</h1>
+	<h1>Sleep logger</h1>
 	<div class="container">
 		<form action="" method="post">
 			<c:if test="${not empty error}">
 				<p class="errorMessage">IDまたはパスワードが間違っています。</p>
 			</c:if>
 
-			<p>
+			<p style="text-align:left;">
 				ID<br> <input type="text" name="login_id">
 			</p>
-			<p>
+			<p style="text-align:left;">
 				パスワード<br> <input type="password" name="login_pass"><br>
 			</p>
 			<input type="submit" value="ログイン"><br>

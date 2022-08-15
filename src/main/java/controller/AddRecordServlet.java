@@ -38,46 +38,30 @@ public class AddRecordServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//エラーメッセージ用リスト
 		List<String> errorMsg = new ArrayList<>();
-		//必須項目未入力チェック
-		String goingToBed = request.getParameter("going_to_bed");
-		String getUp = request.getParameter("get_up");
-		String mood = request.getParameter("mood");
-		if (goingToBed.isBlank() ||
-				getUp.isBlank() ||
-				mood.isBlank()) {
-			errorMsg.add("必須項目が未入力です。");
-			request.setAttribute("errorMsg", errorMsg);
-			request.setAttribute("error", true);
-			request.getRequestDispatcher("/WEB-INF/view/addRecord.jsp").forward(request, response);
-			return;
-		}
+		//チェックのために訪問時刻を取得する
+		LocalDateTime theVisitedTime = LocalDateTime.now();
 		//就寝時刻チェック
-		LocalDateTime gtb = LocalDateTime.parse(goingToBed);
-		if (gtb.isAfter(LocalDateTime.now())) {
-			errorMsg.add("就寝時刻が不正です。");
-		}
-		//起床時刻チェック
-		LocalDateTime gu = LocalDateTime.parse(getUp);
-		if (gu.isBefore(gtb)) {
-			errorMsg.add("起床時刻が不正です。");
-		}
-		//チェック結果がNGならページを再表示する
-		if (errorMsg.size() != 0) {
-			request.setAttribute("errorMsg", errorMsg);
-			request.setAttribute("error", true);
-			request.getRequestDispatcher("/WEB-INF/view/addRecord.jsp").forward(request, response);
-			return;
+		LocalDateTime goingToBed = null;
+		try {
+			goingToBed = LocalDateTime.parse(request.getParameter("going_to_bed"));
+			if (goingToBed.isAfter(theVisitedTime)) {
+				errorMsg.add("就寝時刻が不正です。");
+				request.setAttribute("errorMsg", errorMsg);
+				request.setAttribute("error", true);
+				request.getRequestDispatcher("/WEB-INF/view/addRecord.jsp").forward(request, response);
+				return;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			errorMsg.add("就寝時刻が未入力です。");
 		}
 
-		//最新のレコードで睡眠時間の重複をチェック
-		DailyRecordDao record = DaoFactory.createDailyRecordDao();
-		User user = (User) request.getSession().getAttribute("user");
+		//起床時刻チェック
+		LocalDateTime getUp = null;
 		try {
-			List<DailyRecord> recordList = new ArrayList<>();
-			recordList = record.findById(user.getId());
-			gu = recordList.get(0).getGetUp();
-			if (gu.isAfter(gtb)) {
-				errorMsg.add("睡眠時間が既存の記録と重複しています。");
+			getUp = LocalDateTime.parse(request.getParameter("get_up"));
+			if (getUp.isBefore(goingToBed) || getUp.isAfter(theVisitedTime)) {
+				errorMsg.add("起床時刻が不正です。");
 				request.setAttribute("errorMsg", errorMsg);
 				request.setAttribute("error", true);
 				request.getRequestDispatcher("/WEB-INF/view/addRecord.jsp").forward(request, response);
@@ -85,21 +69,63 @@ public class AddRecordServlet extends HttpServlet {
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			errorMsg.add("起床時刻が未入力です。");
+		}
+
+		//睡眠時間の重複を過去のレコードと比較してチェックする
+		DailyRecordDao recordDao = DaoFactory.createDailyRecordDao();
+		User user = (User) request.getSession().getAttribute("user");
+		try {
+			List<DailyRecord> recordList = new ArrayList<>();
+			recordList = recordDao.findById(user.getId());
+			LocalDateTime[] userInput = {goingToBed,getUp};
+			int n = 1;
+			toExit://ループ脱出用ラベル
+			for (DailyRecord r : recordList) {
+				String msg = "睡眠時間が記録No." + n + "と重複しています。";
+				for (int i = 0; i < 2; i++) {
+					if (userInput[i].isBefore(r.getGetUp()) && 
+						userInput[i].isAfter(r.getGoingToBed())) {
+						errorMsg.add(msg);
+						break toExit;
+					}else if(r.getGoingToBed().isAfter(userInput[i])){
+						errorMsg.add(msg);
+						break toExit;
+					}
+				}
+				n++;
+			}
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+		
+		//備考欄の文字数をチェックする
+		String remarks = request.getParameter("remarks");
+		if (remarks.length() > 20) {
+			errorMsg.add("備考は20文字以内です。");
+		}
+		
+		//チェック結果がNGならページを再表示する
+		if (errorMsg.size() != 0) {
+			request.setAttribute("errorMsg", errorMsg);
+			request.setAttribute("error", true);
+			request.getRequestDispatcher("/WEB-INF/view/addRecord.jsp").forward(request, response);
+			return;
 		}
 		
 		//DBに登録
 		try {
-			DailyRecord r = new DailyRecord();
-			r.setUserId(user.getId());
-			r.setGoingToBed(gtb);
-			r.setGetUp(gu);
-			r.setFallAsleep(Integer.parseInt(request.getParameter("fall_asleep")));
-			r.setMood(mood);
-			r.setNightAwakenings(Integer.parseInt(request.getParameter("night_awakenings")));
-			r.setRemarks(request.getParameter("remarks"));
-			record.insert(r);
-		} catch (Exception e) {
-			e.printStackTrace();
+			DailyRecord newRecord = new DailyRecord();
+			newRecord.setUserId(user.getId());
+			newRecord.setGoingToBed(goingToBed);
+			newRecord.setGetUp(getUp);
+			newRecord.setFallAsleep(Integer.parseInt(request.getParameter("fall_asleep")));
+			newRecord.setMood(request.getParameter("mood"));
+			newRecord.setNightAwakenings(Integer.parseInt(request.getParameter("night_awakenings")));
+			newRecord.setRemarks(remarks);
+			recordDao.insert(newRecord);
+		} catch (Exception e3) {
+			e3.printStackTrace();
 		}
 		response.sendRedirect(request.getContextPath() + "/showRecord");
 	}
