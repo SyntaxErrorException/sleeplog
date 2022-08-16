@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-	width: 100%;
+	width: 80%;
 	margin: auto;
 	display: flex;
 	justify-content: center;
@@ -35,7 +35,7 @@ h1 {
 
 /* tableここから */
 table {
-	width: 100%;
+	width: 80%;
 	margin: 0 auto;
 	text-align: center;
 }

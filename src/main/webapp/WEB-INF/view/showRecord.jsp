@@ -36,9 +36,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<details>
-			<summary>記録を見る</summary>
-			<table>
+			<table id="table">
 				<thead>
 					<tr>
 						<th class="fixed">No.</th>
@@ -70,12 +68,11 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</details>
 	</div>
 </body>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-<!-- 削除処理 -->
+	<!-- 削除処理 -->
 	function deleteRecord(id,Num) {
 		const bgc = $('#' + id + ' td').css('background-color');
 		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
