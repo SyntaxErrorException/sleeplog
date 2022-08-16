@@ -65,7 +65,7 @@
 							<td><c:out value="${record.remarks}" /></td>
 							<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
 							<td><button class="delete"
-									onclick="deleteRecord(${record.id});">削除</button></td>
+									onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -73,15 +73,15 @@
 		</details>
 	</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 <!-- 削除処理 -->
-	function deleteRecord(id) {
+	function deleteRecord(id,Num) {
 		const bgc = $('#' + id + ' td').css('background-color');
 		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
 
 		setTimeout(function(){
-		const result = confirm('記録を削除します。\r\nよろしいですか？');
+		const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
 			if (result == true) {
 				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
 			} else {
