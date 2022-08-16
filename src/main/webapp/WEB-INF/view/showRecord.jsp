@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ja">
 
 <head>
@@ -8,32 +10,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link href="css/style.css" rel="stylesheet" />
-<title>睡眠日誌 Sleep log</title>
+<link rel="icon" href="images/night.png" />
+<title>睡眠日誌 Sleep logger</title>
 </head>
 
 <body>
-	<h1>Sleep log</h1>
+	<h1>Sleep logger</h1>
 	<h3>睡眠日誌</h3>
-	<p class="userName">山田太郎 様</p>
-	<p>平均睡眠時間 : 7時間30分/日</p>
+	<p class="userName">
+		<c:out value="${user.name}" />
+		様
+	</p>
+	<p>
+		平均睡眠時間 :
+		<c:out value="${averageTimeOfSleeping}" />
+	</p>
+	<div>
+		<a href="logout">ログアウト</a>
+	</div>
 	<div class="container">
 		<div>
 			<form action="" method="post">
 				<input type="submit" value="記録を付ける">
 			</form>
 		</div>
-		<div>
-			<a href="login">ログアウト</a>
-		</div>
 	</div>
 	<div class="container">
 		<details>
-			<summary>テーブル表示</summary>
+			<summary>記録を見る</summary>
 			<table>
 				<thead>
 					<tr>
-						<th class="fixed">年月日</th>
-						<th class="fixed">曜日</th>
+						<th class="fixed">No.</th>
 						<th class="fixed">就寝</th>
 						<th class="fixed">起床</th>
 						<th class="fixed">寝付くまでの時間</th>
@@ -45,49 +53,41 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>22/08/01</td>
-						<td>月</td>
-						<td>22:00</td>
-						<td>06:00</td>
-						<td>15分</td>
-						<td>08時間00分</td>
-						<td>0回</td>
-						<td>すっきり</td>
-						<td>快眠だった。</td>
-						<td><a href="editRecord" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone" class="delete">削除</a></td>
-					</tr>
-					<tr>
-						<td>22/08/02</td>
-						<td>火</td>
-						<td>22:30</td>
-						<td>06:00</td>
-						<td>10分</td>
-						<td>07時間30分</td>
-						<td>0回</td>
-						<td>すっきり</td>
-						<td></td>
-						<td><a href="editRecord" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone" class="delete">削除</a></td>
-					</tr>
-					<tr>
-						<td>22/08/03</td>
-						<td>水</td>
-						<td>23:00</td>
-						<td>06:00</td>
-						<td>10分</td>
-						<td>07時間00分</td>
-						<td>0回</td>
-						<td>すっきり</td>
-						<td></td>
-						<td><a href="editRecord" class="edit">編集</a></td>
-						<td><a href="deleteRecordDone" class="delete">削除</a></td>
-					</tr>
+					<c:forEach var="record" items="${recordList}" varStatus="vs">
+						<tr id="${record.id}">
+							<td><c:out value="${vs.count}" /></td>
+							<td><c:out value="${record.formattedGoingToBed}" /></td>
+							<td><c:out value="${record.formattedGetUp}" /></td>
+							<td><c:out value="${record.fallAsleep}分" /></td>
+							<td><c:out value="${record.formattedTimeOfSleeping}" /></td>
+							<td><c:out value="${record.nightAwakenings}" /></td>
+							<td><c:out value="${record.mood}" /></td>
+							<td><c:out value="${record.remarks}" /></td>
+							<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
+							<td><button class="delete"
+									onclick="deleteRecord(${record.id});">削除</button></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</details>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+<!-- 削除処理 -->
+	function deleteRecord(id) {
+		const bgc = $('#' + id + ' td').css('background-color');
+		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
 
+		setTimeout(function(){
+		const result = confirm('記録を削除します。\r\nよろしいですか？');
+			if (result == true) {
+				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+			} else {
+				$('#' + id + ' td').css('background-color',bgc);
+			}
+		},100);
+	}
+</script>
 </html>

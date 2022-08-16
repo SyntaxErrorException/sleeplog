@@ -5,11 +5,13 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DaoFactory {
-
+	//Daoの生成
 	public static UserDao createUserDao() {
 		return new UserDaoImpl(getDataSource());
 	}
-
+	public static DailyRecordDao createDailyRecordDao() {
+		return new DailyRecordDaoImpl(getDataSource());
+	}
 	// dsの生成
 	private static DataSource getDataSource() {
 		InitialContext ctx = null;

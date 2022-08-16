@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User findById(String loginId) throws Exception {
-		User user = new User();
+		User user = null;
 		try (Connection con = ds.getConnection()) {
 			String sql = "SELECT * FROM users WHERE login_id = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
