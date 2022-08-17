@@ -1,42 +1,32 @@
 @charset "UTF-8";
+
 @font-face {
-   font-family: DancingScript;
-   src: url('../fonts/DancingScript-Medium.ttf') format("truetype");
+	font-family: DancingScript;
+	src: url('../fonts/DancingScript-Medium.ttf') format("truetype");
 }
 
 body {
 	text-align: center;
-	background-color: hsl(238deg 94% 7%);
-	background-image: url("../images/night_sky.jpg");
-	background-size: cover;
-}
-
-.container {
-	width: 80%;
-	margin: auto;
-	display: flex;
-	justify-content: center;
+	background-color: #395873;
 }
 
 .require {
-	width: 100%;
+	width: max-content;
 	padding: 3px 3px;
 	margin: 2px auto;
-	display: flex;
-	justify-content: center;
-	border: solid 1px #ffdd00;
+	border: solid 1px #cddd00;
 }
 
 h1 {
 	margin: 0px auto 5px auto;
 	color: hsl(200, 50%, 76%);
-	font-family: 'DancingScript',cursive;
+	font-family: 'DancingScript', cursive;
 }
 
 /* tableここから */
 table {
-	width: 80%;
-	margin: 0 auto;
+	width: 75%;
+	margin: auto;
 	text-align: center;
 }
 
@@ -58,14 +48,6 @@ table tr:nth-child(even) td {
 	background: hsl(218, 33%, 94%);
 }
 
-table {
-	width: 100%;
-}
-
-th, td {
-	vertical-align: middle;
-}
-
 /* 見出し固定ここから*/
 .fixed {
 	position: sticky;
@@ -85,12 +67,9 @@ th, td {
 /* 見出し固定ここまで*/
 /* tableここまで */
 label:hover {
-	background-color: hsl(120, 30%, 70%);
-}
-
-summary {
+	color: hsl(238deg 94% 7%);
+	background-color: #25cf93;
 	cursor: pointer;
-	margin: 3px auto;
 }
 
 a {
@@ -107,10 +86,10 @@ a.edit {
 }
 
 button.delete {
-  color: #fff;
-  background-color: #eb6100;
-  border-radius: 0.5rem;
-  border: none;
+	color: #fff;
+	background-color: #eb6100;
+	border-radius: 0.5rem;
+	border: none;
 }
 
 a:hover {
@@ -118,25 +97,18 @@ a:hover {
 	text-decoration: none;
 }
 
-button.delete:hover{
+button.delete:hover {
 	color: hsl(320, 88%, 25%);
+	cursor: pointer;
 }
 
 [type="submit"] {
 	display: inline-block;
 	background: rgb(17, 126, 148);
-	border-radius: 5px;
+	border: none; border-radius : 5px;
 	margin: 2px 10px;
 	color: hsl(0, 0%, 90%);
-}
-
-summary {
-	display: block;
-	background: hsl(195deg 86% 56%);
 	border-radius: 5px;
-	width: 100%;
-	margin: 2px auto;
-	padding: 2px;
 }
 
 .errorMessage {
@@ -146,17 +118,12 @@ summary {
 	font-weight: bold;
 }
 
-[type="datetime-local"]{
+[type="datetime-local"] {
 	margin: 0px 3px;
 }
 
-input {
-	text-align: left;
-}
-
-p,h3 {
-	color: hsl(195deg 86% 76%);
-	background-color: hsl(238deg 94% 7%);
+p, h3 {
+	color: hsl(200, 50%, 76%);
 	width: max-content;
 	margin: 5px auto 3px auto;
 }
