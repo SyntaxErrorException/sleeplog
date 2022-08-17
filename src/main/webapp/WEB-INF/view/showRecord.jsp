@@ -80,12 +80,14 @@
 		setTimeout(function(){
 		const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
 			if (result == true) {
-				$('#' + id).css('display','none');
-				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+				$('#' + id).fadeOut(750,function(){
+					$('#' + id).css('display','none');
+					window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+				});
 			} else {
 				$('#' + id + ' td').css('background-color',bgc);
 			}
-		},100);
+		},50);
 	}
 </script>
 </html>
