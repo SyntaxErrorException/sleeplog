@@ -126,4 +126,5 @@ p, h3 {
 	color: hsl(200, 50%, 76%);
 	width: max-content;
 	margin: 5px auto 3px auto;
+	text-align:left;
 }
