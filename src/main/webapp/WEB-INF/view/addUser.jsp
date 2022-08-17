@@ -17,21 +17,6 @@
 	<h1>Sleep logger</h1>
 	<h3>新規登録</h3>
 	<div class="container">
-
-		<form action="addUserDone">
-			<p>
-				ID<br> <input type="text" name="login_id">
-			</p>
-			<p>
-				パスワード<br> <input type="password" name="login_pass">
-			</p>
-			<p>
-				パスワード再入力<br> <input type="password" name="login_pass_conf">
-			</p>
-			<p>
-				お名前<br> <input type="text" name="name">
-
-		<form action="" method="post">
 			<c:if test="${not empty error}">
 				<p class="errorMessage">
 					<c:forEach var="errorMsg" items="${errorMsgList }">
@@ -40,6 +25,7 @@
 					</c:forEach>
 				</p>
 			</c:if>
+		<form action="" method="post">
 			<p style="text-align:left;">
 				ID<br> <input type="text" name="login_id" max="20" placeholder="半角英数のみ">
 			</p>

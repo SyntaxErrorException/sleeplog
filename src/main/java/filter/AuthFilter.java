@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class AuthFilter
  */
-@WebFilter({"/addRecord","/addUserDone","/addUser","/DeleteRecordDone","/editRecord","/showRecord"})
+@WebFilter({"/addRecord","/editRecord","/showRecord"})
 public class AuthFilter implements Filter {
 
 	/**

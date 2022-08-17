@@ -12,7 +12,7 @@ import dao.DailyRecordDao;
 import dao.DaoFactory;
 
 /**
- * Servlet implementation class DeleteDoneServlet
+ * Servlet implementation class DeleteRecordDoneServlet
  */
 @WebServlet("/deleteRecordDone")
 public class DeleteRecordDoneServlet extends HttpServlet {
@@ -22,12 +22,13 @@ public class DeleteRecordDoneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DailyRecordDao record = DaoFactory.createDailyRecordDao();
+		DailyRecordDao recordDao = DaoFactory.createDailyRecordDao();
 		try {
-			record.delete(Integer.parseInt(request.getParameter("id")));
+			recordDao.delete(Integer.parseInt(request.getParameter("id")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		response.sendRedirect("showRecord");
 	}
+
 }

@@ -22,51 +22,48 @@
 		</div>
 	</div>
 	<div style="color: #ffdd00;">必須項目</div>
-		<c:if test="${not empty error}">
+	<c:if test="${not empty error}">
 		<p class="errorMessage">
 			<c:forEach var="msg" items="${errorMsg}">
-				<c:out value="${msg}" /><br>
+				<c:out value="${msg}" />
+				<br>
 			</c:forEach>
 		</p>
 	</c:if>
-	<div class="container">
-		<form action="" method="post">
-			<div class="require">
-				<div>
-					<p>
-						就寝<br> <input type="datetime-local" name="going_to_bed">
-					</p>
-				</div>
-				<div>
-					<p>
-						起床<br> <input type="datetime-local" name="get_up">
-					</p>
-				</div>
-				<div>
-					<p>
-						起床時の気分<br> <label><input type="radio" name="mood"
-							value="すっきり"> すっきり</label> <label><input type="radio"
-							name="mood" value="普通" checked> 普通</label> <label><input
-							type="radio" name="mood" value="やや悪い"> やや悪い</label> <label><input
-							type="radio" name="mood" value="悪い"> 悪い</label>
-					</p>
-				</div>
+	<form action="" method="post">
+		<div class="require">
+			<div>
+				<p>
+					就寝<br> <input type="datetime-local" name="going_to_bed">
+				</p>
 			</div>
-			<p>
-				寝付くまでの時間（分）<br> <input type="number" name="fall_asleep" min="0"
-					value="0" step="5">
-			</p>
-			<p>
-				夜間覚醒の回数<br> <input type="number" name="night_awakenings"
-					min="0" value="0">
-			</p>
-			<p>
-				備考<br>
-				<textarea name="remarks" cols="20" rows="2" placeholder="20文字以内"></textarea>
-			</p>
-			<input type="submit" value="登録">
-		</form>
-	</div>
+			<div>
+				<p>
+					起床<br> <input type="datetime-local" name="get_up">
+				</p>
+			</div>
+		</div>
+		<p>
+			起床時の気分<br> <label><input type="radio" name="mood"
+				value="すっきり"> すっきり</label> <label><input type="radio"
+				name="mood" value="普通" checked> 普通</label> <label><input
+				type="radio" name="mood" value="やや悪い"> やや悪い</label> <label><input
+				type="radio" name="mood" value="悪い"> 悪い</label>
+		</p>
+		<p>
+			寝付くまでの時間（分）<br> <input type="number" name="fall_asleep" min="0"
+				value="0" step="5">
+		</p>
+		<p>
+			夜間覚醒の回数<br> <input type="number" name="night_awakenings" min="0"
+				value="0">
+		</p>
+		<p>
+			備考<br>
+			<textarea name="remarks" cols="20" rows="2" placeholder="20文字以内"></textarea>
+		</p>
+		<input type="submit" value="登録">
+	</form>
 	<p>
 		<a href="showRecord">キャンセル</a>
 	</p>

@@ -35,7 +35,10 @@
 			</form>
 		</div>
 	</div>
+
 	<div class="container">
+
+
 		<table id="table">
 			<thead>
 				<tr>
@@ -52,6 +55,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="record" items="${recordList}" varStatus="vs">
+
 					<tr id="${record.id}">
 						<td><c:out value="${vs.count}" /></td>
 						<td><c:out value="${record.formattedGoingToBed}" /></td>
@@ -64,16 +68,57 @@
 						<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
 						<td><button class="delete"
 								onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button></td>
+
+					<tr id="${record.id}" class="${vs.count}">
+						<td><div class="${vs.count}">
+								<c:out value="${vs.count}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.formattedGoingToBed}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.formattedGetUp}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.fallAsleep}分" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.formattedTimeOfSleeping}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.nightAwakenings}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.mood}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<c:out value="${record.remarks}" />
+							</div></td>
+						<td><div class="${vs.count}">
+								<a href="editRecord?id=${record.id}" class="edit">編集</a>
+							</div></td>
+						<td><div class="${vs.count}">
+								<button class="delete"
+									onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button>
+							</div></td>
+
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+
 	</div>
 </body>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/jquery.easing.min.js"></script>
 <script>
 	<!-- 削除処理 -->
+
+</body>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	//削除処理
+
 	function deleteRecord(id,Num) {
 		const bgc = $('#' + id + ' td').css('background-color');
 		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
@@ -81,6 +126,7 @@
 		setTimeout(function(){
 		const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
 			if (result == true) {
+
 			$('#' + id).fadeOut(500,swing,function(){
 				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
 			} else {
@@ -88,6 +134,15 @@
 			}
 				})
 		},100);
+
+				$('.' + Num).slideUp(550,'linear',function(){
+					window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+				});
+			} else {
+				$('#' + id + ' td').css('background-color',bgc);
+			}
+		},50);
+
 	}
 </script>
 </html>
