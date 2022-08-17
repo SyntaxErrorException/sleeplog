@@ -36,42 +36,43 @@
 		</div>
 	</div>
 	<div class="container">
-			<table id="table">
-				<thead>
-					<tr>
-						<th class="fixed">No.</th>
-						<th class="fixed">就寝</th>
-						<th class="fixed">起床</th>
-						<th class="fixed">寝付くまでの時間</th>
-						<th class="fixed">睡眠時間</th>
-						<th class="fixed">夜間覚醒</th>
-						<th class="fixed">起床時の気分</th>
-						<th class="fixed">備考</th>
-						<th class="fixed" colspan="2">操作</th>
+		<table id="table">
+			<thead>
+				<tr>
+					<th class="fixed">No.</th>
+					<th class="fixed">就寝</th>
+					<th class="fixed">起床</th>
+					<th class="fixed">寝付くまでの時間</th>
+					<th class="fixed">睡眠時間</th>
+					<th class="fixed">夜間覚醒</th>
+					<th class="fixed">起床時の気分</th>
+					<th class="fixed">備考</th>
+					<th class="fixed" colspan="2">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="record" items="${recordList}" varStatus="vs">
+					<tr id="${record.id}">
+						<td><c:out value="${vs.count}" /></td>
+						<td><c:out value="${record.formattedGoingToBed}" /></td>
+						<td><c:out value="${record.formattedGetUp}" /></td>
+						<td><c:out value="${record.fallAsleep}分" /></td>
+						<td><c:out value="${record.formattedTimeOfSleeping}" /></td>
+						<td><c:out value="${record.nightAwakenings}" /></td>
+						<td><c:out value="${record.mood}" /></td>
+						<td><c:out value="${record.remarks}" /></td>
+						<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
+						<td><button class="delete"
+								onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button></td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="record" items="${recordList}" varStatus="vs">
-						<tr id="${record.id}">
-							<td><c:out value="${vs.count}" /></td>
-							<td><c:out value="${record.formattedGoingToBed}" /></td>
-							<td><c:out value="${record.formattedGetUp}" /></td>
-							<td><c:out value="${record.fallAsleep}分" /></td>
-							<td><c:out value="${record.formattedTimeOfSleeping}" /></td>
-							<td><c:out value="${record.nightAwakenings}" /></td>
-							<td><c:out value="${record.mood}" /></td>
-							<td><c:out value="${record.remarks}" /></td>
-							<td><a href="editRecord?id=${record.id}" class="edit">編集</a></td>
-							<td><button class="delete"
-									onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </body>
 <script src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+<script src="js/jquery.easing.min.js"></script>
+<script>
 	<!-- 削除処理 -->
 	function deleteRecord(id,Num) {
 		const bgc = $('#' + id + ' td').css('background-color');
@@ -80,10 +81,12 @@
 		setTimeout(function(){
 		const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
 			if (result == true) {
+			$('#' + id).fadeOut(500,swing,function(){
 				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
 			} else {
 				$('#' + id + ' td').css('background-color',bgc);
 			}
+				})
 		},100);
 	}
 </script>

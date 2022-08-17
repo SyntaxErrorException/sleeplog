@@ -28,6 +28,6 @@ public class DeleteRecordDoneServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/WEB-INF/view/deleteRecordDone.jsp").forward(request, response);
+		response.sendRedirect("showRecord");
 	}
 }
