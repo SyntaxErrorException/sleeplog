@@ -66,10 +66,17 @@ table tr:nth-child(even) td {
 }
 /* 見出し固定ここまで*/
 /* tableここまで */
+
+label {
+	display: block;
+	margin: 5px 0;
+}
+
 label:hover {
 	color: hsl(238deg 94% 7%);
 	background-color: #25cf93;
 	cursor: pointer;
+
 }
 
 a {
@@ -118,13 +125,15 @@ button.delete:hover {
 	font-weight: bold;
 }
 
-[type="datetime-local"] {
-	margin: 0px 3px;
-}
+
 
 p, h3 {
 	color: hsl(200, 50%, 76%);
 	width: max-content;
 	margin: 5px auto 3px auto;
 	text-align:left;
+}
+
+input[type="number"]{
+	text-align: center;
 }
