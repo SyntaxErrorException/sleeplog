@@ -88,7 +88,8 @@ public class AddRecordServlet extends HttpServlet {
 						userInput[i].isAfter(r.getGoingToBed())) {
 						errorMsg.add(msg);
 						break toExit;
-					}else if(r.getGoingToBed().isAfter(userInput[i])){
+					}else if(r.getGoingToBed().isAfter(userInput[i]) && 
+							r.getGetUp().isBefore(userInput[i+1])){
 						errorMsg.add(msg);
 						break toExit;
 					}
