@@ -88,8 +88,8 @@ public class AddRecordServlet extends HttpServlet {
 						userInput[i].isAfter(r.getGoingToBed())) {
 						errorMsg.add(msg);
 						break toExit;
-					}else if(r.getGoingToBed().isAfter(userInput[i]) && 
-							r.getGetUp().isBefore(userInput[i+1])){
+					}else if(r.getGoingToBed().isAfter(goingToBed) && 
+							r.getGetUp().isBefore(getUp)){
 						errorMsg.add(msg);
 						break toExit;
 					}
@@ -130,5 +130,4 @@ public class AddRecordServlet extends HttpServlet {
 		}
 		response.sendRedirect(request.getContextPath() + "/showRecord");
 	}
-
 }
