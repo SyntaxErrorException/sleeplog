@@ -73,9 +73,10 @@ label {
 }
 
 label:hover {
-	color: hsl(238deg 94% 7%);
-	background-color: #25cf93;
+	color: rgb(78, 82, 182);
+	background-color: #e1a4d2;
 	cursor: pointer;
+	border-radius: 0.5rem;
 
 }
 
@@ -136,4 +137,12 @@ p, h3 {
 
 input[type="number"]{
 	text-align: center;
+}
+
+section {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }

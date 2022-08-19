@@ -35,58 +35,58 @@
 			</form>
 		</div>
 	</div>
-		<table id="table">
-			<thead>
-				<tr>
-					<th class="fixed">No.</th>
-					<th class="fixed">就寝</th>
-					<th class="fixed">起床</th>
-					<th class="fixed">寝付くまでの時間</th>
-					<th class="fixed">睡眠時間</th>
-					<th class="fixed">夜間覚醒</th>
-					<th class="fixed">起床時の気分</th>
-					<th class="fixed">備考</th>
-					<th class="fixed" colspan="2">操作</th>
+	<table id="table">
+		<thead>
+			<tr>
+				<th class="fixed">No.</th>
+				<th class="fixed">就寝</th>
+				<th class="fixed">起床</th>
+				<th class="fixed">寝付くまでの時間</th>
+				<th class="fixed">睡眠時間</th>
+				<th class="fixed">夜間覚醒</th>
+				<th class="fixed">起床時の気分</th>
+				<th class="fixed">備考</th>
+				<th class="fixed" colspan="2">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="record" items="${recordList}" varStatus="vs">
+				<tr id="${record.id}" class="${vs.count}">
+					<td><div class="${vs.count}">
+							<c:out value="${vs.count}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.formattedGoingToBed}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.formattedGetUp}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.fallAsleep}分" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.formattedTimeOfSleeping}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.nightAwakenings}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.mood}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<c:out value="${record.remarks}" />
+						</div></td>
+					<td><div class="${vs.count}">
+							<a href="editRecord?id=${record.id}" class="edit">編集</a>
+						</div></td>
+					<td><div class="${vs.count}">
+							<button class="delete"
+								onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button>
+						</div></td>
 				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="record" items="${recordList}" varStatus="vs">
-					<tr id="${record.id}" class="${vs.count}">
-						<td><div class="${vs.count}">
-								<c:out value="${vs.count}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.formattedGoingToBed}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.formattedGetUp}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.fallAsleep}分" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.formattedTimeOfSleeping}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.nightAwakenings}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.mood}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<c:out value="${record.remarks}" />
-							</div></td>
-						<td><div class="${vs.count}">
-								<a href="editRecord?id=${record.id}" class="edit">編集</a>
-							</div></td>
-						<td><div class="${vs.count}">
-								<button class="delete"
-									onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button>
-							</div></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -98,7 +98,7 @@
 		setTimeout(function(){
 		const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
 			if (result == true) {
-				$('.' + Num).slideUp(550,'linear',function(){
+				$('.' + Num).slideUp(250,'swing',function(){
 					window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
 				});
 			} else {
