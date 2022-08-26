@@ -14,6 +14,27 @@
 <title>睡眠日誌 Sleep logger</title>
 </head>
 
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script>
+	//削除処理
+	function deleteRecord(id,Num) {
+		const bgc = $('#' + id + ' td').css('background-color');
+		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
+
+		setTimeout(function(){
+			const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
+			if (result == true) {
+				$('.' + Num).slideUp(250,'swing',function(){
+					window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+				})
+			} else {
+				$('#' + id + ' td').css('background-color',bgc);
+			}
+		},100);
+	}
+</script>
+
 <body>
 	<h1>Sleep logger</h1>
 	<h3>睡眠日誌</h3>
@@ -82,7 +103,7 @@
 							</div></td>
 						<td><div class="${vs.count}">
 								<button class="delete"
-									onclick="deleteRecord(${record.id += ','+= vs.count});">削除</button>
+									onclick="deleteRecord(${record.id += ','+= vs.count})">削除</button>
 							</div></td>
 					</tr>
 				</c:forEach>
@@ -90,29 +111,4 @@
 		</table>
 	</div>
 </body>
-
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script>
-	//削除処理
-	function deleteRecord(id,Num) {
-		const bgc = $('#' + id + ' td').css('background-color');
-		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
-
-		setTimeout(function(){
-		const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
-			if (result == true) {
-
-				$('.' + Num).slideUp(250,'swing',function(){
-
-
-			$('#' + id).fadeOut(500,swing,function(){
-				window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
-			} else {
-				$('#' + id + ' td').css('background-color',bgc);
-			}
-				})
-		},100);
-	}
-</script>
 </html>
