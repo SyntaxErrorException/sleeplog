@@ -33,6 +33,12 @@
 			}
 		},100);
 	}
+	
+	$('.delete').click(function(){
+		const id = $(this).attr('data-id');
+		const num = $(this).attr('data-row');
+		deleteRecord(id,num)
+	})
 </script>
 
 <body>
@@ -103,7 +109,7 @@
 							</div></td>
 						<td><div class="${vs.count}">
 								<button class="delete"
-									onclick="deleteRecord(${record.id += ','+= vs.count})">削除</button>
+									data-id="${record.id}" data-row="${vs.count}">削除</button>
 							</div></td>
 					</tr>
 				</c:forEach>
