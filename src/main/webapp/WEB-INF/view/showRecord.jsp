@@ -12,34 +12,38 @@
 <link href="css/style.css" rel="stylesheet" />
 <link rel="icon" href="images/night.png" />
 <title>睡眠日誌 Sleep logger</title>
-</head>
 
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/jquery.easing.min.js"></script>
 <script>
+	$(function() {
 	//削除処理
-	function deleteRecord(id,Num) {
-		const bgc = $('#' + id + ' td').css('background-color');
-		$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
-
-		setTimeout(function(){
-			const result = confirm('記録No.' + Num + 'を削除します。\r\nよろしいですか？');
-			if (result == true) {
-				$('.' + Num).slideUp(250,'swing',function(){
-					window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
-				})
-			} else {
-				$('#' + id + ' td').css('background-color',bgc);
-			}
-		},100);
-	}
+	function deleteRecord(id,row) {
+			const bgc = $('#' + id + ' td').css('background-color');
+			$('#' + id + ' td').css('background-color','hsl(330, 45%, 80%)');
 	
-	$('.delete').click(function(){
-		const id = $(this).attr('data-id');
-		const num = $(this).attr('data-row');
-		deleteRecord(id,num)
-	})
+			setTimeout(function(){
+				const result = confirm('No.' + row + 'を削除します。\r\nよろしいですか？');
+				if (result == true) {
+					$('.' + row).slideUp(250,'swing',function(){
+						window.location.href = '/Sleep_log/deleteRecordDone?id=' + id;
+					})
+				} else {
+					$('#' + id + ' td').css('background-color',bgc);
+				}
+			},100);
+		}
+		
+		$('.delete').click(function(){
+			const id = $(this).data('id');
+			const row = $(this).data('row');
+			deleteRecord(id,row);
+		});
+		
+	});//ready
+	
 </script>
+</head>
 
 <body>
 	<h1>Sleep logger</h1>
