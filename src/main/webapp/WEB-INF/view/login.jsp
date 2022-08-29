@@ -22,7 +22,7 @@
 			</c:if>
 
 			<p style="text-align: left;">
-				ID<br> <input type="text" name="login_id">
+				ID<br> <input type="text" name="login_id" autofocus>
 			</p>
 			<p style="text-align: left;">
 				パスワード<br> <input type="password" name="login_pass"><br>
