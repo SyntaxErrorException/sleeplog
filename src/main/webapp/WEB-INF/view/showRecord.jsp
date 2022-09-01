@@ -14,7 +14,8 @@
 <title>睡眠日誌 Sleep logger</title>
 
 <script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.0/css/theme.default.min.css">
 <script>
 	$(function() {
 	//削除処理
@@ -40,6 +41,16 @@
 			deleteRecord(id,row);
 		});
 		
+		$('#table').tablesorter({
+		  headers: {
+		      0: { sorter: "digit"},
+		      1: { sorter: "digit"},
+		      2: { sorter: "digit"},
+		      3: { sorter: "digit"},
+		      4: { sorter: "digit"},
+		      5: { sorter: "text"}
+		  }
+		});
 	});//ready
 	
 </script>
