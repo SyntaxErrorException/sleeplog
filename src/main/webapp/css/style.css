@@ -73,8 +73,7 @@ label {
 }
 
 label:hover {
-	color: rgb(78, 82, 182);
-	background-color: #e1a4d2;
+	background-color: #6b859b;
 	cursor: pointer;
 	border-radius: 0.5rem;
 

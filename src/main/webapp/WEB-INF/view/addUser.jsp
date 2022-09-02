@@ -27,10 +27,10 @@
 			</c:if>
 		<form action="" method="post">
 			<p style="text-align:left;">
-				ID<br> <input type="text" name="login_id" max="20" placeholder="半角英数のみ">
+				ID<br> <input type="text" name="login_id" max="20" placeholder="半角英数のみ" autocomplete="off" autofocus>
 			</p>
 			<p style="text-align:left;">
-				パスワード<br> <input type="password" name="login_pass" min="6" max="255" placeholder="6文字以上">
+				パスワード<br> <input type="password" name="login_pass" min="6" max="255" placeholder="6文字以上" autocomplete="off">
 			</p>
 			<p style="text-align:left;">
 				パスワード確認<br> <input type="password" min="6" max="255" name="login_pass_conf">
