@@ -85,7 +85,7 @@ a {
 	border-radius: 0.5rem;
 	color: hsl(0, 0%, 100%);
 	padding: 1px 5px;
-	margin: 2px auto;
+	margin: 1px auto;
 }
 
 a.edit {
@@ -97,6 +97,7 @@ button.delete {
 	background-color: #eb6100;
 	border-radius: 0.5rem;
 	border: none;
+	margin: 1px auto;
 }
 
 a:hover {
@@ -125,8 +126,6 @@ button.delete:hover {
 	font-weight: bold;
 }
 
-
-
 p, h3 {
 	color: hsl(200, 50%, 76%);
 	width: max-content;
@@ -145,3 +144,4 @@ section {
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
+
